@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bookit Importer</title>
+  <style>
+    body {
+      width: 300px; min-height: 200px; margin: 0; padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px; background: #f8f9fa; color: #212529;
+    }
+    header {
+      background: #4361ee; color: #fff; padding: 12px 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    header h1 { font-size: 1rem; margin: 0; }
+    .logo { font-size: 1.3rem; }
+    main { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .section { background: #fff; border-radius: 8px; padding: 12px; border: 1px solid #dee2e6; }
+    .section-title { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    button {
+      width: 100%; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; transition: background 0.15s;
+    }
+    .btn-primary { background: #4361ee; color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: #3451d1; }
+    .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+    .status { font-size: 0.8rem; color: #6c757d; margin-top: 6px; min-height: 18px; }
+    .status.success { color: #2dc653; }
+    .status.error { color: #e63946; }
+    .divider { border: none; border-top: 1px solid #dee2e6; margin: 0; }
+    .settings-section { display: flex; flex-direction: column; gap: 8px; }
+    label { font-size: 0.8rem; font-weight: 600; color: #6c757d; display: block; margin-bottom: 3px; }
+    input[type="text"], input[type="url"] {
+      width: 100%; padding: 6px 8px; border: 1px solid #dee2e6; border-radius: 6px;
+      font-size: 0.82rem; box-sizing: border-box;
+    }
+    .save-btn { background: #e9ecef; color: #212529; }
+    .save-btn:hover { background: #dee2e6; }
+    .note { font-size: 0.75rem; color: #6c757d; line-height: 1.4; }
+    a { color: #4361ee; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo">📚</span>
+    <h1>Bookit Importer</h1>
+  </header>
+  <main>
+    <!-- Libby -->
+    <div class="section">
+      <div class="section-title">📖 Libby</div>
+      <p class="note" style="margin-bottom:8px">
+        Navigate to your <a href="https://libbyapp.com/shelf/loans/default,title,asc" target="_blank">Libby history page</a> first.
+      </p>
+      <button class="btn-primary" id="libby-btn" disabled>Import from current Libby page</button>
+      <div class="status" id="libby-status"></div>
+    </div>
+
+    <!-- Audible -->
+    <div class="section">
+      <div class="section-title">🎧 Audible</div>
+      <p class="note" style="margin-bottom:8px">
+        Navigate to your <a href="https://www.audible.com/library/titles" target="_blank">Audible library</a> first.
+      </p>
+      <button class="btn-primary" id="audible-btn" disabled>Import from current Audible page</button>
+      <div class="status" id="audible-status"></div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Settings -->
+    <div class="section settings-section">
+      <div class="section-title">⚙️ Settings</div>
+      <div>
+        <label for="bookit-url">Bookit URL</label>
+        <input type="url" id="bookit-url" placeholder="http://localhost:3001" />
+      </div>
+      <div>
+        <label for="api-key">API Key</label>
+        <input type="text" id="api-key" placeholder="Your EXTENSION_API_KEY from .env" />
+      </div>
+      <button class="save-btn" id="save-btn">Save settings</button>
+      <div class="status" id="settings-status"></div>
+    </div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
